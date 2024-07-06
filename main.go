@@ -2,7 +2,9 @@ package main
 
 import (
     "net/http"
-    "time"
+    "github.com/myselfBZ/full-text-search/utils"
+
+   "time"
 )
 
 type Stats struct{
