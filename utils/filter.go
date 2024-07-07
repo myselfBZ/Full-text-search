@@ -1,6 +1,9 @@
 package utils
 
-import "strings"
+import(
+    "strings"
+    snowballeng "github.com/kljensen/snowball/english"
+)
 
 
 
@@ -27,5 +30,14 @@ func stopwordFilter(tokens []string) []string  {
 }
 
 func stemmerFilter(tokens []string) []string{
-
+    r := make([]string, len(tokens))
+    for i, token := range tokens{
+        r[i] = snowballeng.Stem(token, false)
+    }
+    return r 
 }
+
+
+
+
+
