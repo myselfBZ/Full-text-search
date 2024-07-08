@@ -7,6 +7,8 @@ import (
    "time"
 )
 
+var 
+
 type Stats struct{
     LoadDocumentTime time.Time `json:"documentLoadTime"`
     IndexDocumentNumber int `json:"indexDocumentTime"`
