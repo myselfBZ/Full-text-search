@@ -1,4 +1,4 @@
-package utils
+package engine
 
 type Index map[string][]int
 
@@ -43,8 +43,10 @@ func (i *Index) Search(text string) []int  {
             if r == nil {
                 r = ids 
             } else{
-                return nil 
+                r = Intersection(r, ids)
             }
+        } else {
+            return nil 
         }
     }
     return r 
