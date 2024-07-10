@@ -2,8 +2,8 @@ package web
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
-	"time"
 
 	"github.com/myselfBZ/full-text-search/engine"
 )
@@ -14,14 +14,13 @@ func HandleRequest(w http.ResponseWriter, r *http.Request)  {
         w.WriteHeader(http.StatusBadRequest)
         return 
     }
-    start := time.Now()
     results := engine.Idx.Search(searchRequest.Text)
-    response := SearchResponse{}
+    response := SearchResponse{
+        Results: make([]engine.Document, 0, len(results)),
+    }
     for _, id := range results{
         response.Results = append(response.Results, engine.Docs[id]) 
     }
-    stop := time.Since(start)
-    response.Time = stop 
-    json.NewEncoder(w).Encode(response)
+    log.Println(response)
 }
 

@@ -36,18 +36,20 @@ func Intersection(a []int, b []int) []int {
 	return r
 }
 
-func (i *Index) Search(text string) []int  {
-    var r []int 
-    for _, token := range analyze(text){
-        if ids, ok := (*i)[token]; ok{
-            if r == nil {
-                r = ids 
-            } else{
-                r = Intersection(r, ids)
-            }
-        } else {
-            return nil 
-        }
-    }
-    return r 
+
+func (idx *Index) Search(text string) []int {
+	var r []int
+	for _, token := range analyze(text) {
+		if ids, ok := (*idx)[token]; ok {
+			if r == nil {
+				r = ids
+			} else {
+				r = Intersection(r, ids)
+			}
+		} else {
+			// Token doesn't exist.
+			return nil
+		}
+	}
+	return r
 }
